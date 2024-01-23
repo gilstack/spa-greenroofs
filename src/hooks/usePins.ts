@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const usePins = () => {
   const [pins, setPins] = useState([]);

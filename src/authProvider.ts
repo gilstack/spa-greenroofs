@@ -2,7 +2,7 @@ import axios from "axios";
 import nookies from "nookies";
 import { AuthBindings } from "@refinedev/core";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const authProvider: AuthBindings = {
   login: async ({ email, password, remember }) => {
@@ -41,10 +41,7 @@ export const authProvider: AuthBindings = {
   },
 
   logout: async () => {
-    // Remove user details from cookies
     nookies.destroy(null, "auth");
-
-    // Remove token from localStorage
     localStorage.removeItem("token");
 
     return {
