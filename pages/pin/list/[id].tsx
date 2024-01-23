@@ -1,17 +1,8 @@
 import React from "react";
 import { usePins } from "src/hooks/usePins";
-import { List, EditButton, ShowButton, DeleteButton } from "@refinedev/antd";
 import { Table, Space } from "antd";
-
-interface IPin {
-  id: string;
-  title: string;
-  description: string;
-  contact: string;
-  category: string;
-  latitude: number;
-  longitude: number;
-}
+import { List, EditButton, ShowButton, DeleteButton } from "@refinedev/antd";
+import { IPin } from "../pin.interface";
 
 const PinList: React.FC = () => {
   const { pins, loading } = usePins();
