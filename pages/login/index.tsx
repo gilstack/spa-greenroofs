@@ -6,6 +6,7 @@ export default function Login() {
   return (
     <AuthPage
       type="login"
+      title=""
       formProps={{
         initialValues: {
           email: "gilmar.pereira@gmail.com",
