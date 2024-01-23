@@ -1,5 +1,7 @@
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
+import React, { useContext, useEffect, useState } from "react";
 import { useGetIdentity } from "@refinedev/core";
+import { ColorModeContext } from "../../contexts";
 import {
   Layout as AntdLayout,
   Avatar,
@@ -8,17 +10,16 @@ import {
   Typography,
   theme,
 } from "antd";
-import React, { useContext } from "react";
-import { ColorModeContext } from "../../contexts";
+import { jwtDecode } from "jwt-decode";
+
+interface IUser {
+  id: string;
+  name: string;
+  avatar: string;
+}
 
 const { Text } = Typography;
 const { useToken } = theme;
-
-type IUser = {
-  id: number;
-  name: string;
-  avatar: string;
-};
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   sticky,
@@ -27,13 +28,27 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   const { data: user } = useGetIdentity<IUser>();
   const { mode, setMode } = useContext(ColorModeContext);
 
+  const [decoded, setDecoded] = useState<IUser | null>(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+
+    if (storedToken) {
+      // Decodifica o token e atualiza o estado
+      const decodedToken = jwtDecode(storedToken) as IUser;
+      setDecoded(decodedToken);
+    }
+  }, []);
+
   const headerStyles: React.CSSProperties = {
     backgroundColor: token.colorBgElevated,
     display: "flex",
     justifyContent: "flex-end",
     alignItems: "center",
+    justifyItems: "center",
     padding: "0px 24px",
-    height: "64px",
+    height: "70px",
+    lineHeight: 0,
   };
 
   if (sticky) {
@@ -51,12 +66,12 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           onChange={() => setMode(mode === "light" ? "dark" : "light")}
           defaultChecked={mode === "dark"}
         />
-        {(user?.name || user?.avatar) && (
-          <Space style={{ marginLeft: "8px" }} size="middle">
-            {user?.name && <Text strong>{user.name}</Text>}
-            {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
-          </Space>
-        )}
+        <Space style={{ marginLeft: "8px" }} size="middle">
+          {decoded?.name && <Text strong>{decoded.name}</Text>}
+          {decoded?.avatar && (
+            <Avatar src={decoded.avatar} alt={decoded.name} />
+          )}
+        </Space>
       </Space>
     </AntdLayout.Header>
   );
