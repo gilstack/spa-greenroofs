@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface IPin {
+export interface IMarkerProps {
   id: string;
   title: string;
   description: string;

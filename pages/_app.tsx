@@ -1,26 +1,27 @@
+import type { NextPage } from "next";
+import { AppProps } from "next/app";
+import { Refine } from "@refinedev/core";
+import { Header } from "@components/header";
+import { ColorModeContextProvider } from "@contexts";
+import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ThemedLayoutV2,
   ThemedSiderV2,
   useNotificationProvider,
 } from "@refinedev/antd";
-import { GitHubBanner, Refine } from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/nextjs-router";
-import type { NextPage } from "next";
-import { AppProps } from "next/app";
-
-import { Header } from "@components/header";
-import { ColorModeContextProvider } from "@contexts";
-import "@refinedev/antd/dist/reset.css";
-import dataProvider from "@refinedev/simple-rest";
 import { App as AntdApp } from "antd";
 import { authProvider } from "src/authProvider";
+import dataProvider from "@refinedev/simple-rest";
+
+import "@refinedev/antd/dist/reset.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";
+
 //const API_URL = "http://localhost:8000";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -60,11 +61,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: "markers",
-                    list: "/pin",
-                    create: "/pin/create",
-                    edit: "/pin/update/:id",
-                    show: "/pin/find/:id",
+                    name: "marker",
+                    list: "/marker",
+                    create: "/marker/create",
+                    edit: "/marker/edit/:id",
+                    show: "/marker/show/:id",
                     meta: {
                       canDelete: true,
                     },

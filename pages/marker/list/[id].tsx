@@ -1,20 +1,22 @@
 import React, { useState } from "react";
-import { usePins } from "src/hooks/usePins";
 import { Table, Space, Modal } from "antd";
 import { List, EditButton, ShowButton, DeleteButton } from "@refinedev/antd";
-import { IPin } from "../pin.interface";
-import PinShow from "../show/[id]"; // Importe o componente que exibe os detalhes
+import MarkerShow from "../show/[id]";
+import { useMarkers } from "src/hooks/useMarkers";
+import { IMarkerProps } from "../marker.interface";
 
-const PinList: React.FC = () => {
-  const { pins, loading } = usePins();
-  const [selectedPin, setSelectedPin] = useState<IPin | null>(null);
+const MarkerList: React.FC = () => {
+  const { markers, loading } = useMarkers();
+  const [selectedMarker, setSelectedMarker] = useState<IMarkerProps | null>(
+    null
+  );
 
-  const handleShow = (record: IPin) => {
-    setSelectedPin(record);
+  const handleShow = (record: IMarkerProps) => {
+    setSelectedMarker(record);
   };
 
   const handleClose = () => {
-    setSelectedPin(null);
+    setSelectedMarker(null);
   };
 
   const tableColumns = [
@@ -28,7 +30,7 @@ const PinList: React.FC = () => {
     {
       title: "Ações",
       dataIndex: "actions",
-      render: (_: any, record: IPin) => (
+      render: (_: any, record: IMarkerProps) => (
         <Space>
           <EditButton hideText size="small" recordItemId={record.id} />
           <ShowButton
@@ -45,22 +47,22 @@ const PinList: React.FC = () => {
   return (
     <List>
       <Table
-        dataSource={pins}
+        dataSource={markers}
         columns={tableColumns}
         rowKey="id"
         loading={loading}
       />
       <Modal
-        visible={!!selectedPin}
+        visible={!!selectedMarker}
         width={650}
         footer={null}
         onCancel={handleClose}
         destroyOnClose
       >
-        {selectedPin && <PinShow pin={selectedPin} />}
+        {selectedMarker && <MarkerShow marker={selectedMarker} />}
       </Modal>
     </List>
   );
 };
 
-export default PinList;
+export default MarkerList;

@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next";
 import { authProvider } from "src/authProvider";
-import PinList from "./list/[id]";
+import MarkerList from "./list/[id]";
 
-const PinsPage: React.FC = () => {
-  return <PinList />;
+const MarkersPage: React.FC = () => {
+  return <MarkerList />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -24,4 +24,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default PinsPage;
+export default MarkersPage;
