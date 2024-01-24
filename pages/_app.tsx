@@ -21,6 +21,7 @@ import { App as AntdApp } from "antd";
 import { authProvider } from "src/authProvider";
 
 const API_URL = "https://api.fake-rest.refine.dev";
+//const API_URL = "http://localhost:8000";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   noLayout?: boolean;
@@ -59,11 +60,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
+                    name: "markers",
+                    list: "/pin",
+                    create: "/pin/create",
+                    edit: "/pin/update/:id",
+                    show: "/pin/find/:id",
                     meta: {
                       canDelete: true,
                     },
