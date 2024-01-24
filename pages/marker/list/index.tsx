@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Table, Space, Modal } from "antd";
-import { List, EditButton, ShowButton, DeleteButton } from "@refinedev/antd";
-import { useMarkers } from "src/hooks/useMarkers";
+import { List, EditButton, DeleteButton } from "@refinedev/antd";
+import { useMarkers } from "../../../src/hooks/useMarkers";
 
-import MarkerShow from "../show/[id]";
-import MarkerEdit from "../edit/[id]";
+import MarkerShow from "../show/index";
+import MarkerEdit from "../edit/index";
 
 interface IMarkerProps {
   id: string;

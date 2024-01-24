@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Typography, Divider, Input, Button, message } from "antd";
 import { EditOutlined, SaveOutlined } from "@ant-design/icons";
-import Map from "src/components/map/Map";
+import Map from "../../../src/components/map/Map";
 
 interface IMarkerProps {
   id: string;
@@ -26,9 +26,9 @@ type IEditable = {
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-const { Title } = Typography;
-
 const MarkerEdit: React.FC<MarkerEditProps> = ({ marker, onClose }) => {
+  const { Title } = Typography;
+
   const router = useRouter();
 
   const initialEditableState: IEditable = {
@@ -51,20 +51,22 @@ const MarkerEdit: React.FC<MarkerEditProps> = ({ marker, onClose }) => {
 
     return (
       <div style={{ marginBottom: "20px" }}>
-        <Title level={5}>
-          {field.charAt(0).toUpperCase() + field.slice(1)}{" "}
-          {isEditable ? (
-            <SaveOutlined
-              style={{ cursor: "pointer" }}
-              onClick={() => handleSave()}
-            />
-          ) : (
-            <EditOutlined
-              style={{ cursor: "pointer" }}
-              onClick={() => handleEditToggle(field)}
-            />
-          )}
-        </Title>
+        {marker && (
+          <Title level={5}>
+            {field.charAt(0).toUpperCase() + field.slice(1)}{" "}
+            {isEditable ? (
+              <SaveOutlined
+                style={{ cursor: "pointer" }}
+                onClick={() => handleSave()}
+              />
+            ) : (
+              <EditOutlined
+                style={{ cursor: "pointer" }}
+                onClick={() => handleEditToggle(field)}
+              />
+            )}
+          </Title>
+        )}
         {isEditable ? (
           <Input
             value={String(editedValues[field])}
@@ -135,9 +137,11 @@ const MarkerEdit: React.FC<MarkerEditProps> = ({ marker, onClose }) => {
 
   return (
     <div>
-      <Title level={3} style={{ marginBottom: "24px" }}>
-        {marker.title}
-      </Title>
+      {marker && (
+        <Title level={3} style={{ marginBottom: "24px" }}>
+          {marker.title}
+        </Title>
+      )}
 
       <Divider style={{ opacity: 0.5 }} />
 

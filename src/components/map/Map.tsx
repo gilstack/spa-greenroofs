@@ -12,9 +12,9 @@ declare global {
   }
 }
 
-const mapsKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
 const Map: React.FC<MapProps> = ({ latitude, longitude, zoom = 10 }) => {
+  const mapsKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${mapsKey}&libraries=places`;

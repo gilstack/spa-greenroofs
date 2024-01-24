@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { authProvider } from "src/authProvider";
-import MarkerList from "./list/[id]";
+import MarkerList from "./list/index";
 
 const MarkersPage: React.FC = () => {
   return <MarkerList />;
