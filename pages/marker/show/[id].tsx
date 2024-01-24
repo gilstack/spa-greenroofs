@@ -1,7 +1,16 @@
 import React from "react";
 import { Typography, Divider } from "antd";
 import Map from "src/components/map/Map";
-import { IMarkerProps } from "../marker.interface";
+
+interface IMarkerProps {
+  id: string;
+  title: string;
+  description: string;
+  contact: string;
+  category: string;
+  latitude: number;
+  longitude: number;
+}
 
 interface MarkerShowProps {
   marker: IMarkerProps;

@@ -5,7 +5,20 @@ import { Typography, Divider, Input, Button, message } from "antd";
 import { EditOutlined, SaveOutlined } from "@ant-design/icons";
 import Map from "src/components/map/Map";
 
-import { IMarkerProps, MarkerEditProps } from "../marker.interface";
+interface IMarkerProps {
+  id: string;
+  title: string;
+  description: string;
+  contact: string;
+  category: string;
+  latitude: number;
+  longitude: number;
+}
+
+interface MarkerEditProps {
+  marker: IMarkerProps;
+  onClose: () => void;
+}
 
 type IEditable = {
   [key in keyof IMarkerProps]: boolean;

@@ -9,8 +9,8 @@ export default function Login() {
       title=""
       formProps={{
         initialValues: {
-          email: "gilmar.pereira@gmail.com",
-          password: "123456",
+          email: "",
+          password: "",
         },
       }}
     />

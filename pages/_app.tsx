@@ -3,7 +3,6 @@ import { AppProps } from "next/app";
 import { Refine } from "@refinedev/core";
 import { Header } from "@components/header";
 import { ColorModeContextProvider } from "@contexts";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ThemedLayoutV2,
@@ -51,48 +50,35 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <AntdApp>
-            <DevtoolsProvider>
-              <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                notificationProvider={useNotificationProvider}
-                authProvider={authProvider}
-                resources={[
-                  {
-                    name: "marker",
-                    list: "/marker",
-                    create: "/marker/create",
-                    edit: "/marker/edit/:id",
-                    show: "/marker/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
+            <Refine
+              routerProvider={routerProvider}
+              dataProvider={dataProvider(API_URL)}
+              notificationProvider={useNotificationProvider}
+              authProvider={authProvider}
+              resources={[
+                {
+                  name: "marker",
+                  list: "/marker",
+                  create: "/marker/create",
+                  edit: "/marker/edit/:id",
+                  show: "/marker/show/:id",
+                  meta: {
+                    canDelete: true,
                   },
-                  {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
-                  },
-                ]}
-                options={{
-                  syncWithLocation: true,
-                  warnWhenUnsavedChanges: true,
-                  useNewQueryKeys: true,
-                  projectId: "TC4NgN-K1pUc1-krtlw5",
-                }}
-              >
-                {renderComponent()}
-                <RefineKbar />
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-              </Refine>
-              <DevtoolsPanel />
-            </DevtoolsProvider>
+                },
+              ]}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+                useNewQueryKeys: true,
+                projectId: "TC4NgN-K1pUc1-krtlw5",
+              }}
+            >
+              {renderComponent()}
+              <RefineKbar />
+              <UnsavedChangesNotifier />
+              <DocumentTitleHandler />
+            </Refine>
           </AntdApp>
         </ColorModeContextProvider>
       </RefineKbarProvider>

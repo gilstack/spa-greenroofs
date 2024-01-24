@@ -6,7 +6,15 @@ import { useMarkers } from "src/hooks/useMarkers";
 import MarkerShow from "../show/[id]";
 import MarkerEdit from "../edit/[id]";
 
-import { IMarkerProps } from "../marker.interface";
+interface IMarkerProps {
+  id: string;
+  title: string;
+  description: string;
+  contact: string;
+  category: string;
+  latitude: number;
+  longitude: number;
+}
 
 const MarkerList: React.FC = () => {
   const { markers, loading, refreshMarkers } = useMarkers();
