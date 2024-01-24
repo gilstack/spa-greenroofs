@@ -20,9 +20,9 @@ import dataProvider from "@refinedev/simple-rest";
 
 import "@refinedev/antd/dist/reset.css";
 
-const API_URL = "https://api.fake-rest.refine.dev";
+//const API_URL = "https://api.fake-rest.refine.dev";
 
-//const API_URL = "http://localhost:8000";
+const API_URL = "http://localhost:8000";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   noLayout?: boolean;

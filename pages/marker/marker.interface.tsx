@@ -9,3 +9,8 @@ export interface IMarkerProps {
   latitude: number;
   longitude: number;
 }
+
+export interface MarkerEditProps {
+  marker: IMarkerProps;
+  onClose: () => void;
+}

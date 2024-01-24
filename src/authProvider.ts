@@ -19,7 +19,7 @@ export const authProvider: AuthBindings = {
       localStorage.setItem("token", token);
 
       // Store the user details in cookies
-      nookies.set(null, "auth", JSON.stringify(token), {
+      nookies.set(null, "auth", token, {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
       });
