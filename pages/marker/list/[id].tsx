@@ -28,15 +28,14 @@ const MarkerList: React.FC = () => {
   };
 
   const tableColumns = [
-    { dataIndex: "id", title: "ID" },
-    { dataIndex: "title", title: "Título" },
-    { dataIndex: "description", title: "Descrição" },
-    { dataIndex: "contact", title: "Contato" },
-    { dataIndex: "category", title: "Categoria" },
+    { dataIndex: "title", title: "Title" },
+    { dataIndex: "description", title: "Description" },
+    { dataIndex: "contact", title: "Contact" },
+    { dataIndex: "category", title: "Category" },
     { dataIndex: "latitude", title: "Latitude" },
     { dataIndex: "longitude", title: "Longitude" },
     {
-      title: "Ações",
+      title: "Actions",
       dataIndex: "actions",
       render: (_: any, record: IMarkerProps) => (
         <Space>
@@ -46,11 +45,15 @@ const MarkerList: React.FC = () => {
             recordItemId={record.id}
             onClick={() => handleShow(record, true)}
           />
+
+          {/*
           <ShowButton
             hideText
             size="small"
             onClick={() => handleShow(record, false)}
           />
+          */}
+
           <DeleteButton hideText size="small" recordItemId={record.id} />
         </Space>
       ),
