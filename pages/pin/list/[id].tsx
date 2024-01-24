@@ -52,10 +52,13 @@ const PinList: React.FC = () => {
       />
       <Modal
         visible={!!selectedPin}
-        onCancel={handleClose}
+        width={650}
         footer={null}
+        onCancel={handleClose}
         destroyOnClose
-      />
+      >
+        {selectedPin && <PinShow pin={selectedPin} />}
+      </Modal>
     </List>
   );
 };
