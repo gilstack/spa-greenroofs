@@ -6,7 +6,7 @@ import { Form, Input, message } from "antd";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-const PinCreate: React.FC = () => {
+const MarkerCreate: React.FC = () => {
   const { form } = useForm();
   const router = useRouter();
 
@@ -22,11 +22,11 @@ const PinCreate: React.FC = () => {
         return;
       }
 
-      await createPin(values, token);
+      await createMarker(values, token);
 
       message.success("Novo ponto de cobertura verde criado com sucesso!");
 
-      router.push("/pin");
+      router.push("/marker");
     } catch (error) {
       handleRequestError(error as AxiosError);
     }
@@ -37,9 +37,9 @@ const PinCreate: React.FC = () => {
     router.push("/login");
   };
 
-  const createPin = async (values: any, token: string) => {
+  const createMarker = async (values: any, token: string) => {
     try {
-      await axios.post(`${apiUrl}/pin/create`, values, {
+      await axios.post(`${apiUrl}/marker/create`, values, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -78,7 +78,7 @@ const PinCreate: React.FC = () => {
 
   return (
     <Create
-      resource="pin"
+      resource="marker"
       saveButtonProps={{
         onClick: handleSave,
       }}
@@ -111,4 +111,4 @@ const PinCreate: React.FC = () => {
   );
 };
 
-export default PinCreate;
+export default MarkerCreate;

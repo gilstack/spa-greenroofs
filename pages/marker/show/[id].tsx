@@ -1,19 +1,19 @@
 import React from "react";
-import { IPin } from "../pin.interface";
 import { Typography, Divider } from "antd";
 import Map from "src/components/map/Map";
+import { IMarkerProps } from "../marker.interface";
 
-interface PinShowProps {
-  pin: IPin;
+interface MarkerShowProps {
+  marker: IMarkerProps;
 }
 
 const { Title } = Typography;
 
-const PinShow: React.FC<PinShowProps> = ({ pin }) => {
+const MarkerShow: React.FC<MarkerShowProps> = ({ marker }) => {
   return (
     <div>
       <Title level={3} style={{ marginBottom: "24px" }}>
-        {pin.title}
+        {marker.title}
       </Title>
 
       <Divider style={{ opacity: 0.5 }} />
@@ -24,36 +24,40 @@ const PinShow: React.FC<PinShowProps> = ({ pin }) => {
         <div style={{ flex: 0.75, paddingLeft: 10 }}>
           <div style={{ marginBottom: "20px" }}>
             <Title level={5}>Descrição</Title>
-            <p>{pin.description}</p>
+            <p>{marker.description}</p>
           </div>
 
           <div style={{ marginBottom: "20px" }}>
             <Title level={5}>Contato</Title>
-            <p>{pin.contact}</p>
+            <p>{marker.contact}</p>
           </div>
 
           <div style={{ marginBottom: "20px" }}>
             <Title level={5}>Categoria</Title>
-            <p>{pin.category}</p>
+            <p>{marker.category}</p>
           </div>
 
           <div style={{ display: "flex", gap: "20px" }}>
             <div>
               <Title level={5}>Latitude</Title>
-              <p>{pin.latitude}</p>
+              <p>{marker.latitude}</p>
             </div>
             <div>
               <Title level={5}>Longitude</Title>
-              <p>{pin.longitude}</p>{" "}
+              <p>{marker.longitude}</p>{" "}
             </div>
           </div>
         </div>
         <div style={{ flex: 1 }}>
-          <Map latitude={pin.latitude} longitude={pin.longitude} zoom={10} />
+          <Map
+            latitude={marker.latitude}
+            longitude={marker.longitude}
+            zoom={10}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default PinShow;
+export default MarkerShow;

@@ -12,11 +12,12 @@ declare global {
   }
 }
 
+const mapsKey = process.env.KEY_GOOGLE_MAPS;
+
 const Map: React.FC<MapProps> = ({ latitude, longitude, zoom = 10 }) => {
   useEffect(() => {
-    // Carregando a API do Google Maps
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyB82S63MbSGJSCuu54aLcF1PJNlGWSoX_A&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${mapsKey}&libraries=places`;
     script.async = true;
     document.body.appendChild(script);
 
@@ -26,7 +27,6 @@ const Map: React.FC<MapProps> = ({ latitude, longitude, zoom = 10 }) => {
         zoom: zoom,
       });
 
-      // Adicionando marcador
       new window.google.maps.Marker({
         position: { lat: latitude, lng: longitude },
         map: map,
