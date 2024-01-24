@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { usePins } from "src/hooks/usePins";
-import { Table, Space } from "antd";
+import { Table, Space, Modal } from "antd";
 import { List, EditButton, ShowButton, DeleteButton } from "@refinedev/antd";
 import { IPin } from "../pin.interface";
+import PinShow from "../show/[id]"; // Importe o componente que exibe os detalhes
 
 const PinList: React.FC = () => {
   const { pins, loading } = usePins();
+  const [selectedPin, setSelectedPin] = useState<IPin | null>(null);
+
+  const handleShow = (record: IPin) => {
+    setSelectedPin(record);
+  };
+
+  const handleClose = () => {
+    setSelectedPin(null);
+  };
 
   const tableColumns = [
     { dataIndex: "id", title: "ID" },
@@ -21,7 +31,11 @@ const PinList: React.FC = () => {
       render: (_: any, record: IPin) => (
         <Space>
           <EditButton hideText size="small" recordItemId={record.id} />
-          <ShowButton hideText size="small" recordItemId={record.id} />
+          <ShowButton
+            hideText
+            size="small"
+            onClick={() => handleShow(record)}
+          />
           <DeleteButton hideText size="small" recordItemId={record.id} />
         </Space>
       ),
@@ -35,6 +49,12 @@ const PinList: React.FC = () => {
         columns={tableColumns}
         rowKey="id"
         loading={loading}
+      />
+      <Modal
+        visible={!!selectedPin}
+        onCancel={handleClose}
+        footer={null}
+        destroyOnClose
       />
     </List>
   );

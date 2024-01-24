@@ -1,25 +1,32 @@
-import { AntdShowInferencer } from "@refinedev/inferencer/antd";
-import { GetServerSideProps } from "next";
-import { authProvider } from "src/authProvider";
+import React from "react";
+import { IPin } from "../pin.interface";
+import { Typography } from "antd";
 
-export default function PinShow() {
-  return <AntdShowInferencer />;
+interface PinShowProps {
+  pin: IPin;
 }
 
-export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
-  const { authenticated, redirectTo } = await authProvider.check(context);
+const { Title } = Typography;
 
-  if (!authenticated) {
-    return {
-      props: {},
-      redirect: {
-        destination: `${redirectTo}?to=${encodeURIComponent("/login")}`,
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
+const PinShow: React.FC<PinShowProps> = ({ pin }) => {
+  return (
+    <div>
+      <Title level={5}>Id</Title>
+      <p>{pin.id}</p>
+      <Title level={5}>Título</Title>
+      <p>{pin.title}</p>
+      <Title level={5}>Descrição</Title>
+      <p>{pin.description}</p>
+      <Title level={5}>Contato</Title>
+      <p>{pin.contact}</p>
+      <Title level={5}>Categoria</Title>
+      <p>{pin.category}</p>
+      <Title level={5}>Latitude</Title>
+      <p>{pin.latitude}</p>
+      <Title level={5}>Longitude</Title>
+      <p>{pin.longitude}</p>
+    </div>
+  );
 };
+
+export default PinShow;
