@@ -37,13 +37,10 @@ const MarkerList: React.FC = () => {
 
   const tableColumns = [
     { dataIndex: "title", title: "Title" },
-    { dataIndex: "description", title: "Description" },
-    { dataIndex: "contact", title: "Contact" },
-    { dataIndex: "category", title: "Category" },
-    { dataIndex: "latitude", title: "Latitude" },
-    { dataIndex: "longitude", title: "Longitude" },
+    { dataIndex: "latitude", title: "Lat" },
+    { dataIndex: "longitude", title: "Long" },
     {
-      title: "Actions",
+      title: "Edit",
       dataIndex: "actions",
       render: (_: any, record: IMarkerProps) => (
         <Space>
